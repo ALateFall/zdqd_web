@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+		<script type="text/javascript" src="../layui/layui.js"></script>
+	</head>
+	<body>
+		<table id="demo" lay-filter="test"></table>
+
+		<script>
+			layui.use('table', function() {
+				var table = layui.table;
+				
+				var $ = layui.$;//把layUI中的jq变成我们常用的jq
+
+				//第一个实例
+				table.render({
+					elem: '#demo',
+					height: 312,
+					url: 'http://localhost:8088/UserServlet', //数据接口
+					parseData: function(res) { //res 即为原始返回的数据
+						return {
+							"code": 0, //解析接口状态
+							"msg": "OK", //解析提示文本
+							"count": 1000, //解析数据长度
+							"data": res //解析数据列表
+						};
+					},
+					page: true //开启分页
+						,
+					cols: [
+						[ //表头
+							{
+								field: 'id',
+								title: 'ID',
+								width: 180,
+								sort: true,
+								fixed: 'left'
+							}, {
+								field: 'username',
+								title: '用户名',
+								width: 180
+							}, {
+								field: 'password',
+								title: '密码',
+								width: 180,
+								sort: true
+							}, {
+								field: 'sex',
+								title: '性别',
+								width: 180
+							}
+							,{fixed: 'right', width:250, align:'center', toolbar: '#barDemo'} //这里的toolbar值是模板元素的选择器
+						]
+					]
+				});
+				
+				//监听工具条 
+				table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+				  var data = obj.data; //获得当前行数据
+				  console.log(data);
+				  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+				  var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+				 
+				  if(layEvent === 'detail'){ //查看
+				    //do somehing
+					console.log("查看详情");
+					//详情页
+					window.location.href = "detail.html?id+";
+					
+				  } else if(layEvent === 'del'){ //删除
+				    layer.confirm('真的删除行么', function(index){
+				      obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+				      layer.close(index);
+				      //向服务端发送删除指令:ajax
+					  $.ajax({
+						  url:"",
+						  data:"id="+data.id,
+						  success:function(data){
+							  
+						  }
+					  })
+				    });
+				  } else if(layEvent === 'edit'){ //编辑
+				    //do something
+				    console.log("编辑数据")
+					window.location.href = "update.html?id+";
+				    // //同步更新缓存对应的值:ajax
+				    // obj.update({
+				    //   username: '123'
+				    //   ,title: 'xxx'
+				    // });
+				  } else if(layEvent === 'LAYTABLE_TIPS'){
+				    layer.alert('Hi，头部工具栏扩展的右侧图标。');
+				  }
+				});
+
+			});
+		</script>
+		<script type="text/html" id="barDemo">
+		  <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+		  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		  
+		  <!-- 这里同样支持 laytpl 语法，如： -->
+		  {{#  if(d.auth > 2){ }}
+		    <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
+		  {{#  } }}
+		</script>
+	</body>
+</html>
