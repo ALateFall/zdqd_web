@@ -14,13 +14,20 @@
             display: table;
             border-collapse: collapse;
             width: 600px;
-            height: 200px;
+            height: 400px;
         }
     </style>
 </head>
 
 <body>
+    <br>
+    <br>
+    <br>
     <img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
+    <br>
+    <br>
+    <br>
+    <br>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
         <legend>热门物流公司</legend>
     </fieldset>
@@ -34,22 +41,31 @@
             </colgroup>
             <tbody>
                 <tr>
-                    <div class="layui-anim layui-anim-scaleSpring"><td align="center"><a href="https://www.baidu.com"><img src="../my_photo/shunfeng.png" alt=""></a></td></div>
-                    <div class="layui-anim layui-anim-up"><td align="center"><a href=""><img src="../my_photo/baishi.png" alt=""></a></td></div>
-                    <div class="layui-anim layui-anim-scaleSpring"><td align="center"><a href=""><img src="../my_photo/youzheng.png" alt=""></a></td></div>
+                    <td align="center"><a href="https://www.baidu.com"><img width="80%" src="../my_photo/shunfeng.png" alt=""></a>
+                    </td>
+                    <td align="center"><a href=""><img width="80%" src="../my_photo/baishi.png" alt=""></a></td>
+                    <td align="center"><a href=""><img width="80%" src="../my_photo/youzheng.png" alt=""></a></td>
                 </tr>
                 <tr>
-                    <div class="layui-anim layui-anim-scaleSpring"><td align="center"><a href=""><img src="../my_photo/yuantong.png" alt=""></a></td></div>
-                    <div class="layui-anim layui-anim-scaleSpring"><td align="center"><a href=""><img src="../my_photo/zhongtong.png" alt=""></a></td></div>
-                    <div class="layui-anim layui-anim-scaleSpring"><td align="center"><a href=""><img src="../my_photo/yunda.png" alt=""></a></td></div>
+                    <td align="center"><a href=""><img width="80%" src="../my_photo/yuantong.png" alt=""></a></td>
+                    <td align="center"><a href=""><img width="80%" src="../my_photo/zhongtong.png" alt=""></a></td>
+                    <td align="center"><a href=""><img width="80%" src="../my_photo/韵达.png" alt=""></a></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-        <legend>所有物流公司</legend>
-    </fieldset>
+    <script src="../layui/layui.js" charset="utf-8">
+        layui.use('element', function () {
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+            //监听导航点击
+            element.on('nav(demo)', function (elem) {
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+        });
+    </script>
 
     <script src="../layui/layui.js" charset="utf-8"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
