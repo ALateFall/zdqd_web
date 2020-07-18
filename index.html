@@ -96,18 +96,18 @@
       $("a").click(function () {
         //alert($(this).text());
         var text = $(this).text()
-        if (text == "用户管理") {
+        if (text == "收费标准") {
           $("#main").find("#ifr").remove();
           $("#main").append(
-            '<iframe src="user/userManagement.html" id="ifr" style="width:100%;height:100%"></iframe>');
-        } else if (text == "新增用户") {
+            '<iframe src="station/fee.html" id="ifr" style="width:100%;height:100%"></iframe>');
+        } else if (text == "员工信息") {
           $("#main").find("#ifr").remove();
           $("#main").append(
-            '<iframe src="user/user-add.html" id="ifr" style="width:100%;height:100%"></iframe>');
-        } else if (text == "路线管理") {
+            '<iframe src="station/staff.html" id="ifr" style="width:100%;height:100%"></iframe>');
+        } else if (text == "查找驿站") {
           $("#main").find("#ifr").remove();
           $("#main").append(
-            '<iframe src="delivery/deliveryManager.html" id="ifr" style="width:100%;height:100%"></iframe>');
+            '<iframe src="station/station.html" id="ifr" style="width:100%;height:100%"></iframe>');
         } else if (text == "物流公司") {
           $("#main").find("#ifr").remove();
           $("#main").append(
