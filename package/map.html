@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body,
+        html,
+        #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+    </style>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=KwVyn3djKhoztxt7oIFxES9bNIg4rsGq">
+    </script>
+    <title>计算驾车时间与距离</title>
+</head>
+
+<body>
+    <img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
+    <div>
+        <div style="padding-left: 40%;" class="layui-inline">
+            <input type="text" name="parcel_num" required lay-verify="required" placeholder="请输入包裹编号" autocomplete="off"
+                class="layui-input" style="width:125px;">
+        </div>
+        <div class="layui-inline">
+            <button type="button" class="layui-btn layui-btn-radius layui-btn-warm" id="findById"><i
+                    class="layui-icon">&#xe615;</i> 查找包裹</button>
+
+        </div>
+
+    </div>
+    <div id="allmap"></div>
+</body>
+
+</html>
+<script type="text/javascript">
+    // 百度地图API功能
+    start = "达州"
+    end = "北京"
+    var map = new BMap.Map("allmap");
+    map.centerAndZoom(new BMap.Point(116.404, 39.915), 12);
+    var output = "从" + start + "到" + end + "驾车需要";
+    var searchComplete = function (results) {
+        if (transit.getStatus() != BMAP_STATUS_SUCCESS) {
+            return;
+        }
+        var plan = results.getPlan(0);
+        output += plan.getDuration(true) + "\n"; //获取时间
+        output += "总路程为：";
+        output += plan.getDistance(true) + "\n"; //获取距离
+        output += "您的包裹预计在" + new String(new Number(new String(plan.getDuration(true)).split("小时")[0]) + 20) +
+            "小时内送达,谢谢."
+    }
+    var transit = new BMap.DrivingRoute(map, {
+        renderOptions: {
+            map: map
+        },
+        onSearchComplete: searchComplete,
+        onPolylinesSet: function () {
+            setTimeout(function () {
+                alert(output)
+            }, "1000");
+        }
+    });
+    transit.search(start, end);
+</script>

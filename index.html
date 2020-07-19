@@ -20,7 +20,7 @@
         <img src="my_photo/logo.png" width="4%" style="font-size: 30px; color: #f8f3eb;"></img>
         <li class="layui-nav-item" ><a href="index.html">菜鸟驿站后台管理系统</a></li>
         <span style="padding-left: 30%;">      </span>
-        <li class="layui-nav-item">
+        <!-- <li class="layui-nav-item">
           <a href="javascript:;">驿站包裹</a>
           <dl class="layui-nav-child">
             <dd><a href="">查找驿站</a></dd>
@@ -36,7 +36,7 @@
           </dl>
         </li>
         <li class="layui-nav-item"><a href="javascript:;">收费标准</a></li>
-        <li class="layui-nav-item"><a href="javascript:;">物流公司</a></li>
+        <li class="layui-nav-item"><a href="javascript:;">物流公司</a></li> -->
 
       </ul>
 
@@ -72,6 +72,7 @@
             <dl class="layui-nav-child">
               <dd><a href="javascript:;">查看包裹</a></dd>
               <dd><a href="javascript:;">物流信息</a></dd>
+              <dd><a href="javascript:;">寄出包裹</a></dd>
           </li>
 
           <li class="layui-nav-item">
@@ -134,6 +135,18 @@
           $("#main").find("#ifr").remove();
           $("#main").append(
             '<iframe src="user/userinfo.html" id="ifr" style="width:100%;height:100%"></iframe>');
+        } else if (text == "查看包裹") {
+          $("#main").find("#ifr").remove();
+          $("#main").append(
+            '<iframe src="package/package.html" id="ifr" style="width:100%;height:100%"></iframe>');
+        } else if (text == "寄出包裹") {
+          $("#main").find("#ifr").remove();
+          $("#main").append(
+            '<iframe src="package/send.html" id="ifr" style="width:100%;height:100%"></iframe>');
+        } else if (text == "物流信息") {
+          $("#main").find("#ifr").remove();
+          $("#main").append(
+            '<iframe src="package/map.html" id="ifr" style="width:100%;height:100%"></iframe>');
         }
       })
     });
