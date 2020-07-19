@@ -16,10 +16,28 @@
       <!-- <div style="padding-left: 500px; padding-top: 8px; display:inline">
         <img src="my_photo/logo.png" width="4%" style="font-size: 30px; color: #f8f3eb;"></img>
       </div> -->
-      <!-- <img src="my_photo/logo.png" width="4%" style="font-size: 30px; color: #f8f3eb;"></img> -->
       <ul class="layui-nav layui-bg-blue">
-        <img src="my_photo/logo.png" width="3.5%" style="font-size: 30px; color: #f8f3eb;"></img>
+        <img src="my_photo/logo.png" width="4%" style="font-size: 30px; color: #f8f3eb;"></img>
         <li class="layui-nav-item" ><a href="index.html">菜鸟驿站后台管理系统</a></li>
+        <span style="padding-left: 30%;">      </span>
+        <li class="layui-nav-item">
+          <a href="javascript:;">驿站包裹</a>
+          <dl class="layui-nav-child">
+            <dd><a href="">查找驿站</a></dd>
+            <dd><a href="">员工信息</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">包裹管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">查看包裹</a></dd>
+            <dd><a href="javascript:;">物流信息</a></dd>
+            <dd><a href="javascript:;">寄出包裹</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="javascript:;">收费标准</a></li>
+        <li class="layui-nav-item"><a href="javascript:;">物流公司</a></li>
+
       </ul>
 
       <!-- 头部区域（可配合layui已有的水平导航） -->
@@ -30,7 +48,7 @@
             ltfall
           </a>
           <dl class="layui-nav-child">
-            <dd><a href="">基本资料</a></dd>
+            <dd><a href="javascript:;">基本资料</a></dd>
 
           </dl>
         </li>
@@ -112,6 +130,10 @@
           $("#main").find("#ifr").remove();
           $("#main").append(
             '<iframe src="company/company.html" id="ifr" style="width:100%;height:100%"></iframe>');
+        } else if (text == "基本资料") {
+          $("#main").find("#ifr").remove();
+          $("#main").append(
+            '<iframe src="user/userinfo.html" id="ifr" style="width:100%;height:100%"></iframe>');
         }
       })
     });
