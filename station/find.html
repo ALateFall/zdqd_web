@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body,
+        html,
+        #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+    </style>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=KwVyn3djKhoztxt7oIFxES9bNIg4rsGq">
+    </script>
+    <title></title>
+</head>
+
+
+
+<body>
+    <img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
+    <div id="allmap"></div>
+    <p>您现在的位置附近的菜鸟驿站:</p>
+</body>
+
+</html>
+<script type="text/javascript">
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(104.06792346,30.67994285);
+    map.centerAndZoom(point, 12);
+
+    var geolocation = new BMap.Geolocation();
+    var x = 104.06792346;
+    var y = 30.67994285;
+    geolocation.getCurrentPosition(function (r) {
+        if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+            var mk = new BMap.Marker(r.point);
+            // map.addOverlay(mk);
+            // map.panTo(r.point);
+            x = r.point.lng;
+            y = r.point.lat;
+            var map = new BMap.Map("allmap");
+            map.centerAndZoom(new BMap.Point(x, y), 11);
+            var local = new BMap.LocalSearch(map, {
+                renderOptions: {
+                    map: map
+                }
+            });
+            local.search("菜鸟驿站");
+        }
+    }, {
+        enableHighAccuracy: true
+    })
+    // 百度地图API功能
+</script>
