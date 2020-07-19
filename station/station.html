@@ -26,6 +26,7 @@
 
 	<table class="layui-hide" id="test" lay-filter="test"></table>
 
+	<script></script>
 	<script>
 		//封装了tableInit的对象/函数，根据不同的url来实现表格的渲染
 		var tableInit = function (url) { //url代表的是渲染表格的请求路径
@@ -51,19 +52,26 @@
 						[{
 								field: 'station_id',
 								width: 180,
-								title: 'ID',
+								title: '驿站ID',
+								edit: "text",
 								sort: true
 							}, {
 								field: 'station_name',
 								width: 180,
 								title: '驿站名称',
+								edit: "text",
 								sort: true
 							}, {
 								field: 'manager_name',
 								width: 180,
+								edit: "text",
 								title: '管理人员'
+							}, {
+								field: 'manager_id',
+								width: 180,
+								edit: "text",
+								title: '管理人员ID'
 							}
-							//   ,{field:'sex', width:180, title: '真实姓名'}
 							, {
 								fixed: 'right',
 								width: 250,
@@ -80,61 +88,65 @@
 					var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 					var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
 
-					if (layEvent === 'detail') { //查看
-						//do somehing:跳转到一个详情页面
-						window.location.href = "user-add.html";
-					} else if (layEvent === 'del') { //删除
-						layer.confirm('真的删除行么', function (index) {
+					if (layEvent === 'del') { //删除
+						layer.confirm('删除这一行吗?', function (index) {
 							obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 							layer.close(index);
 							//向服务端发送删除指令:ajax
 							var id = data.station_id;
 							$.ajax({
-								url: "http://localhost:8088/user/deleteUser/" + id,
+								//TODO:这里要加上删除的url
+								url: "http://localhost/abc",
 								success: function (res) {
-									console.log(res);
+									layer.msg("删除成功!");
 								}
 							})
 						});
-					} else if (layEvent === 'edit') { //编辑
-						//do something 跳转到详情编辑界面
-
-						//同步更新缓存对应的值
-						obj.update({
-							station_name: '123',
-							title: 'xxx'
-						});
-					} else if (layEvent === 'LAYTABLE_TIPS') {
-						layer.alert('Hi，头部工具栏扩展的右侧图标。');
 					}
 				});
 			});
 		}
+		
+		//TODO:此处是表格初始化的url
+		tableInit("");
 
-		tableInit("http://localhost:8088/UserServlet");
-
-		//根据id查询，重新渲染表格，事件和tableInit()绑定
 		layui.use('layer', function () {
 			var $ = layui.$ //由于layer弹层依赖jQuery，所以可以直接得到
-				,
-				layer = layui.layer;
+			layer = layui.layer;
 
 			//jQuery
 			$("#findById").on('click', function () {
 				var id = $(this).parent().parent().find(".layui-input").val();
-				tableInit("http://localhost:8088/user/queryById/" + id);
+				//TODO:此处是查找的url
+				tableInit("" + id);
 			})
 		});
 	</script>
 	<script type="text/html" id="barDemo">
-		<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-
-		<!-- 这里同样支持 laytpl 语法，如： -->
-		{{#  if(d.auth > 2){ }}
-		<a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
-		{{#  } }}
+	</script>
+	<script>
+		layui.use('table', function () {
+			var table = layui.table;
+			//监听单元格编辑
+			table.on('edit(test)', function (obj) {
+				var value = obj.value //得到修改后的值
+					,
+					data = obj.data //得到所在行所有键值
+					,
+					field = obj.field;
+				$.ajax({
+					//提示:直接调用data,是这一列的所有键值,例如data.id就是id
+					//调用field,即修改的这个字段.例如修改了stationid,则field即为stationid
+					//调用value,为修改后的值,例如将5改为2,则value的值为2
+					//TODO:这里是修改功能
+					url: "",
+					success: function (res) {
+						layer.msg('成功将该字段的值修改为' + value + "!")
+					}
+				})
+			});
+		});
 	</script>
 </body>
 
