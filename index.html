@@ -66,6 +66,7 @@
               <dd><a href="javascript:;">查找驿站</a></dd>
               <dd><a href="javascript:;">员工信息</a></dd>
               <dd><a href="javascript:;">管理人员信息</a></dd>
+              <dd><a href="javascript:;">增加员工</a></dd>
               <dd><a href="javascript:;">我周围的驿站</a></dd>
           </li>
 
@@ -157,6 +158,10 @@
           $("#main").find("#ifr").remove();
           $("#main").append(
             '<iframe src="station/find.html" id="ifr" style="width:100%;height:100%"></iframe>');
+        } else if (text == "增加员工") {
+          $("#main").find("#ifr").remove();
+          $("#main").append(
+            '<iframe src="station/staff_add.html" id="ifr" style="width:100%;height:100%"></iframe>');
         }
       })
     });
