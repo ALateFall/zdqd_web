@@ -58,9 +58,9 @@
 		    </div>
 		  </div> -->
 		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
-			<label class="layui-form-label">管理人员</label>
+			<label class="layui-form-label">管理人员id</label>
 			<div class="layui-input-block">
-				<input type="text" name="manager_name" required lay-verify="required" placeholder="请输入管理者姓名"
+				<input type="text" name="manager_id" required lay-verify="required" placeholder="请输入管理者id"
 					autocomplete="off" class="layui-input">
 			</div>
 		</div>
@@ -86,9 +86,9 @@
 				console.log(data.field)
 				$.ajax({
 					//TODO:进行添加的url
-					url :"",
+					url :"http://localhost/StaffInsertServlet",
 					//下面是传参,不需要的可以删一删
-					data: {"staff_name":data.field.staff_name, "staff_id":data.field.staff_id,"staff_sex":data.field.staff_sex,"station_id":data.field.station_id},
+					data: {"staff_name":data.field.staff_name, "staff_id":data.field.staff_id,"staff_sex":data.field.staff_sex,"station_id":data.field.station_id,"manager_id":data.field.manager_id},
 					type:"get",
 					success: function (res) {
 						layer.msg("添加成功!")

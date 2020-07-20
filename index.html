@@ -45,7 +45,7 @@
         <li class="layui-nav-item">
           <a href="javascript:;">
             <img src="my_photo/xiaohei.jpg" class="layui-nav-img">
-            ltfall
+            <span id="user_name"> </span>
           </a>
           <dl class="layui-nav-child">
             <dd><a href="javascript:;">基本资料</a></dd>
@@ -171,6 +171,20 @@
       })
     });
   </script>
+  <script>
+    layui.use('layer',function(){
+      var $ = layui.$;
+      $.ajax({
+        url:"",
+        data:"",
+        success: function (res) {
+          document.getElementById("user_name").innerHTML = res
+        }
+      })
+
+    })
+  </script>
+
 </body>
 
 </html>

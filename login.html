@@ -73,17 +73,27 @@
 			function mycheck() {
 				var id = document.getElementById("name").value
 				var password = document.getElementById("pass").value
+				console.log(1)
+				window.location.href = "index.html"
+				test = "index.html"
+				if(test=="index.html"){
+					window.location.href = "index.html"
+				}else{
+					window.location.href = "login.html"
+				}
 				$.ajax({
-					url :"",//TODO:这里是url
-					type:"post",
+					url :"http://ltfall.top",//TODO:这里是url
+					type:"get",
 					data:{},//这个是发送的数据格式,id是用户填写的用户名,password是填写的密码
+					dataType:String,
 					success: function(res){//res是返回的数据
-						if(res==""){
-							window.location.href=""
-						}else{
-							window.location.href = ""
-						}
-						
+						console.log(res)
+						// if(res==""){
+						// 	window.location.href = ""
+						// }else{
+						// 	window.location.href = ""
+						// }
+						return false;
 					}
 				})
 			}

@@ -22,8 +22,8 @@
 		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
 			<label class="layui-form-label">管理者id</label>
 			<div class="layui-input-block">
-				<input type="text" id="manager_id" name="manager_id" required lay-verify="required" placeholder="请输入管理者id"
-					autocomplete="off" class="layui-input">
+				<input type="text" id="manager_id" name="manager_id" required lay-verify="required"
+					placeholder="请输入管理者id" autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item" pane style="padding-left: 270px">
@@ -56,21 +56,26 @@
 			var $ = layui.$
 			var form = layui.form;
 			window.jquery = window.$ = layui.jquery;
-			form.on('submit(submit1)',function(data){
+			form.on('submit(submit1)', function (data) {
 				console.log(data.field)
 				$.ajax({
 					//TODO:进行添加的url
-					url :"",
+					url: "http://localhost/MagInsertServlet",
 					//下面是传参,不需要的可以删一删
-					data: {"manager_name":data.field.manager_name, "manager_id":data.field.manager_id,"manager_sex":data.field.manager_sex,"station_id":data.field.station_id},
-					type:"get",
+					data: {
+						"manager_id": data.field.manager_id,
+						"manager_name": data.field.manager_name,
+						"manager_sex": data.field.manager_sex,
+						"station_id": data.field.station_id
+					},
+					type: "get",
 					success: function (res) {
 						layer.msg("添加成功!")
 					}
 				})
 				return false;
 			})
-			
+
 		});
 	</script>
 </body>

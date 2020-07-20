@@ -15,7 +15,7 @@
 	<img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
 	<div>
 		<div class="layui-inline">
-			<input type="text" name="title" required lay-verify="required" placeholder="请输入员工姓名" autocomplete="off"
+			<input type="text" name="title" required lay-verify="required" placeholder="请输入员工id" autocomplete="off"
 				class="layui-input" style="width:125px;">
 		</div>
 		<div class="layui-inline">
@@ -66,14 +66,12 @@
 								edit: "text",
 								title: '性别'
 							}, {
-								field: 'station_id',
+								field: 'station_name',
 								width: 180,
-								edit: "text",
 								title: '所属驿站'
 							}, {
-								field: 'manager_id',
+								field: 'manager_name',
 								width: 180,
-								edit: "text",
 								title: '老板姓名'
 							}, {
 								fixed: 'right',
@@ -99,9 +97,11 @@
 							var id = data.staff_id;
 							$.ajax({
 								//TODO:这里填写删除的url
-								url: "http://localhost:8088/user/deleteUser",
-								data:{'id':id}, //这里我的理解是根据id来删除的,可以根据实际改一下,格式一样
-								type:'get',
+								url: "http://localhost/StaffDeleteServlet",
+								data: {
+									'staff_id': id
+								}, //这里我的理解是根据id来删除的,可以根据实际改一下,格式一样
+								type: 'get',
 								success: function (res) {
 									layer.msg("删除成功!")
 								}
@@ -111,9 +111,9 @@
 				});
 			});
 		}
-		
+
 		//TODO:表格初始化的url,即查询所有
-		tableInit("");
+		tableInit("http://localhost/StaffFindAllServlet");
 
 		//根据id查询，重新渲染表格，事件和tableInit()绑定
 		layui.use('layer', function () {
@@ -127,13 +127,12 @@
 				//TODO:查询功能的url
 				// 查询功能要注意一下查询的servlet,传过来的json数据外面一定要有[]嵌套,详情可以问我
 				//下面是实例,假如我的url是http://localhost:8088/user/queryById
-				tableInit("http://localhost:8088/user/queryById?id=" + id);
+				tableInit("http://localhost:80/StaffFindOneServlet?staff_id=" + id);
 			})
 		});
 	</script>
 	<script type="text/html" id="barDemo">
 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-
 	</script>
 	<script>
 		layui.use('table', function () {
@@ -146,24 +145,25 @@
 					data = obj.data //得到所在行所有键值
 					,
 					field = obj.field;
-				station_id2 = data.station_id
-				station_name2 = data.station_name
-				manager_id2 = data.manager_id
+				staff_id = data.staff_id
+				staff_name = data.staff_name
+				staff_sex = data.staff_sex
 				$.ajax({
 					//提示:直接调用data,是这一列的所有键值,例如data.id就是id
 					//调用field,即修改的这个字段.例如修改了stationid,则field即为stationid
 					//调用value,为修改后的值,例如将5改为2,则value的值为2
 					//详情可以问我
 					//TODO:这里是修改功能
-					data:{"station_id":station_id2,"station_name":station_name2,"manager_id":manager_id2},
-					type:"get",
-					url: "http:/localhost/UpdateStation",
+					data: {
+						"staff_id":staff_id,
+						"staff_name": staff_name,
+						"staff_sex": staff_sex
+					},
+					type: "get",
+					url: "http:/localhost/StaffUpdateServlet",
 					success: function (res) {
 						layer.msg('成功将该字段的值修改为' + value + "!")
 					},
-					failed:function (res) {
-						layer.msg("shibaile")
-					}
 				})
 			});
 		});

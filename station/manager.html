@@ -15,7 +15,7 @@
     <img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
     <div>
         <div class="layui-inline">
-            <input type="text" name="title" required lay-verify="required" placeholder="请输入管理人员姓名" autocomplete="off"
+            <input type="text" name="title" required lay-verify="required" placeholder="请输入管理人员id" autocomplete="off"
                 class="layui-input" style="width:200px;">
         </div>
         <div class="layui-inline">
@@ -82,7 +82,7 @@
 
                 //监听工具条 
                 table.on('tool(test)', function (
-                obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+                    obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
                     var data = obj.data; //获得当前行数据
                     var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
                     var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
@@ -92,12 +92,12 @@
                             obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                             layer.close(index);
                             //向服务端发送删除指令:ajax
-                            var id = data.staff_id;
+                            var id = data.manager_id;
                             $.ajax({
                                 //TODO:这里填写删除的url
-                                url: "http://localhost:8088/user/deleteUser",
+                                url: "http://localhost/MagDeleteServlet",
                                 data: {
-                                    'id': id
+                                    'manager_id': id
                                 }, //这里我的理解是根据id来删除的,可以根据实际改一下,格式一样
                                 type: 'get',
                                 success: function (res) {
@@ -111,7 +111,7 @@
         }
 
         //TODO:此处是初始化,即查询所有的url
-        tableInit("");
+        tableInit("http://localhost/MagFindAllServlet");
 
         //根据id查询，重新渲染表格，事件和tableInit()绑定
         layui.use('layer', function () {
@@ -125,7 +125,7 @@
                 //TODO:查询功能的url
                 // 查询功能要注意一下查询的servlet,传过来的json数据外面一定要有[]嵌套,详情可以问我
                 //下面是实例,假如我的url是http://localhost:8088/user/queryById
-                tableInit("http://localhost:8088/user/queryById?id=" + id);
+                tableInit("http://localhost/MagFindOneServlet?manager_id=" + id);
             })
         });
     </script>
@@ -143,9 +143,16 @@
                     data = obj.data //得到所在行所有键值
                     ,
                     field = obj.field;
-                station_id2 = data.station_id
-                station_name2 = data.station_name
+
+
                 manager_id2 = data.manager_id
+                manager_name2 = data.manager_name
+                manager_sex2 = data.manager_sex
+                station_id2 = data.station_id
+                console.log(manager_id2)
+                console.log(manager_name2)
+                console.log(manager_sex2)
+                console.log(station_id2)
                 $.ajax({
                     //提示:直接调用data,是这一列的所有键值,例如data.id就是id
                     //调用field,即修改的这个字段.例如修改了stationid,则field即为stationid
@@ -153,12 +160,13 @@
                     //详情可以问我
                     //TODO:这里是修改功能
                     data: {
-                        "station_id": station_id2,
-                        "station_name": station_name2,
-                        "manager_id": manager_id2
+                        "manager_id": manager_id2,
+                        "manager_name": manager_name2,
+                        "manager_sex": manager_sex2,
+                        "station_id": station_id2
                     },
                     type: "get",
-                    url: "http:/localhost/UpdateStation",
+                    url: "http://localhost/MagUpdateServlet",
                     success: function (res) {
                         layer.msg('成功将该字段的值修改为' + value + "!")
                     },
