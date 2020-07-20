@@ -1,102 +1,98 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title></title>
-		<link rel="stylesheet" href="../layui/css/layui.css" media="all">
-		<script type="text/javascript" src="../layui/layui.js"></script>
-	</head>
-	<body>
-        <img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
-		<form class="layui-form" action="">
-		  <!-- <div class="layui-form-item">
-		    <label class="layui-form-label">包裹编号</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="parcel_num" required  lay-verify="required" placeholder="请输入包裹编号" autocomplete="off" class="layui-input">
-		    </div>
-		  </div> -->
-		  <!-- <div class="layui-form-item">
-		    <label class="layui-form-label">快递公司名称</label>
-		    <div class="layui-input-inline">
-		      <input type="text" name="compy_id" required lay-verify="required" placeholder="请输入快递公司编号" autocomplete="off" class="layui-input">
-		    </div>
-		  </div> -->
-		  <div class="layui-form-item" style="padding-left: 270px; width: 800px;padding-top: 130px">
-		    <label class="layui-form-label" >收件人</label>
-		    <div class="layui-input-block"  >
-		      <input type="text" name="receiver_name" required  lay-verify="required" placeholder="收件人姓名" autocomplete="off" class="layui-input">
-		    </div>
-		  </div>
-		  <div class="layui-form-item"  style="padding-left: 270px; width: 800px">
-		    <label class="layui-form-label">寄件人</label>
-		    <div class="layui-input-block" >
-		      <input type="text" name="sender_name" required  lay-verify="required" placeholder="寄件人姓名" autocomplete="off" class="layui-input">
-		    </div>
-		  </div>
-		  <div class="layui-form-item" style="padding-left: 270px; width: 800px">
-		    <label class="layui-form-label">收货城市</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="receiver_city" required  lay-verify="required" placeholder="请输入收货地址" autocomplete="off" class="layui-input">
-		    </div>
-		  </div>
-		  <div class="layui-form-item"  style="padding-left: 270px; width: 800px">
-		    <label class="layui-form-label">寄件城市</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="sender_city" required  lay-verify="required" placeholder="请输入寄件地址" autocomplete="off" class="layui-input">
-		    </div>
-		  </div>
-		  <!-- <div class="layui-form-item">
-		    <label class="layui-form-label">包裹所在地</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="parcel_city"required  lay-verify="required"   class="layui-input">
-		    </div>
-		  </div> -->
-		  
-		  <!-- <div class="layui-form-item">
-		    <label class="layui-form-label">包裹状态</label>
-		    <div class="layui-input-block">
-		      <input type="radio" name="parcel_zhuangtai" value="到达" title="到达">
-		      <input type="radio" name="parcel_zhuangtai" value="途中" title="途中" checked>
-		    </div>
-		  </div> -->
-		  <div class="layui-form-item"  style="padding-left: 270px; width: 800px">
-		    <label class="layui-form-label">快递公司</label>
-		    <div class="layui-input-block">
-		      <select name="compy_id" lay-verify="required">
-		        <option value=""></option>
-		        <option value="1">韵达快递</option>
-		        <option value="2">百世快递</option>
-		        <option value="3">中通快递</option>
-		        <option value="4">圆通快递</option>
-				<option value="5">顺丰快递</option>
-				<option value="6">邮政快递</option>
-		      </select>
-		    </div>
-		  </div>
-		  <div class="layui-form-item"  style="padding-left: 270px; width: 800px">
-		    <div class="layui-input-block">
-				<button type="button" class="layui-btn layui-btn-radius layui-btn-warm"  id="findById"><i class="layui-icon">&#xe615;</i>确定添加</button>
-		      <button type="reset" class="layui-btn layui-btn-radius layui-btn-primary"><i class="layui-icon">&#xe669;</i>重置</button>
-		    </div>
-		  </div>
-		</form>
-		 
-		<script>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title></title>
+	<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+	<script type="text/javascript" src="../layui/layui.js"></script>
+</head>
+
+<body>
+	<img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
+	<form class="layui-form" action="">
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px;padding-top: 130px">
+			<label class="layui-form-label">收件人</label>
+			<div class="layui-input-block">
+				<input type="text" name="receiver_name" required lay-verify="required" placeholder="收件人姓名"
+					autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<label class="layui-form-label">寄件人</label>
+			<div class="layui-input-block">
+				<input type="text" name="sender_name" required lay-verify="required" placeholder="寄件人姓名"
+					autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<label class="layui-form-label">收货城市</label>
+			<div class="layui-input-block">
+				<input type="text" name="receiver_city" required lay-verify="required" placeholder="请输入收货地址"
+					autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<label class="layui-form-label">寄件城市</label>
+			<div class="layui-input-block">
+				<input type="text" name="sender_city" required lay-verify="required" placeholder="请输入寄件地址"
+					autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<label class="layui-form-label">快递公司</label>
+			<div class="layui-input-block">
+				<select name="compy_id" lay-verify="required">
+					<option value=""></option>
+					<option value="1">韵达快递</option>
+					<option value="2">百世快递</option>
+					<option value="3">中通快递</option>
+					<option value="4">圆通快递</option>
+					<option value="5">顺丰快递</option>
+					<option value="6">邮政快递</option>
+				</select>
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<div class="layui-input-block">
+				<button type="submit" class="layui-btn layui-btn-radius layui-btn-warm" lay-filter="submit"
+					lay-submit="" id="findById"><i class="layui-icon">&#xe615;</i>确定添加</button>
+				<button type="reset" class="layui-btn layui-btn-radius layui-btn-primary"><i
+						class="layui-icon">&#xe669;</i>重置</button>
+			</div>
+		</div>
+	</form>
+
+	<script>
 		//Demo
-		layui.use(['form','jquery'], function(){
-		  var form = layui.form;
-		  window.jquery = window.$ = layui.jquery;
-		  
-		  //监听提交
-		  form.on('submit(formDemo)', function(data){
-		    layer.msg(JSON.stringify(data.field));//表单中被序列化好的json数据
-			$.post("http://localhost:8088/user/regUser",data.field,function(){
-				window.location.href = "package.html";
-			})
-		    return false;
-		  });
+		layui.use(['form', 'jquery'], function () {
+			var form = layui.form;
+			window.jquery = window.$ = layui.jquery;
+			var $ = layui.$
+
+			//监听提交
+			form.on('submit(submit)', function (data) {
+				console.log(data.field)
+				$.ajax({
+					//TODO:进行添加的url
+					url: "",
+					//下面是传参,不需要的可以删一删
+					data: {
+						"compy_id": data.field.compy_id,
+						"receiver_city": data.field.receiver_city,
+						"sender_city": data.field.sender_city,
+						"sender_name": data.field.sender_name
+					},
+					type: "get",
+					success: function (res) {
+						layer.msg("寄出包裹成功!")
+					}
+				})
+				return false;
+			});
 		});
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>

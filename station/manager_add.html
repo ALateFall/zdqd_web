@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title></title>
+	<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+	<script type="text/javascript" src="../layui/layui.js"></script>
+</head>
+
+<body>
+	<img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
+	<form class="layui-form" action="">
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px;padding-top: 130px">
+			<label class="layui-form-label">管理者姓名</label>
+			<div class="layui-input-block">
+				<input type="text" id="manager_name" name="manager_name" required lay-verify="required"
+					placeholder="请输入管理者姓名" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<label class="layui-form-label">管理者id</label>
+			<div class="layui-input-block">
+				<input type="text" id="manager_id" name="manager_id" required lay-verify="required" placeholder="请输入管理者id"
+					autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" pane style="padding-left: 270px">
+			<label class="layui-form-label">性别</label>
+			<div class="layui-input-block">
+				<input type="radio" name="manager_sex" value="男" title="男">
+				<input type="radio" name="manager_sex" value="女" title="女" checked>
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<label class="layui-form-label">驿站id</label>
+			<div class="layui-input-block">
+				<input type="text" name="station_id" required lay-verify="required" placeholder="请输入员工id"
+					autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<div class="layui-input-block">
+				<button id="submit" type="submit" class="layui-btn layui-btn-radius layui-btn-warm" lay-submit=""
+					lay-filter="submit1"><i class="layui-icon">&#xe615;</i>确定添加</button>
+				<button type="reset" class="layui-btn layui-btn-radius layui-btn-primary"><i
+						class="layui-icon">&#xe669;</i>重置</button>
+			</div>
+		</div>
+	</form>
+
+	<script>
+		//Demo
+		layui.use(['form', 'jquery'], function () {
+			var $ = layui.$
+			var form = layui.form;
+			window.jquery = window.$ = layui.jquery;
+			form.on('submit(submit1)',function(data){
+				console.log(data.field)
+				$.ajax({
+					//TODO:进行添加的url
+					url :"",
+					//下面是传参,不需要的可以删一删
+					data: {"manager_name":data.field.manager_name, "manager_id":data.field.manager_id,"manager_sex":data.field.manager_sex,"station_id":data.field.station_id},
+					type:"get",
+					success: function (res) {
+						layer.msg("添加成功!")
+					}
+				})
+				return false;
+			})
+			
+		});
+	</script>
+</body>
+
+</html>

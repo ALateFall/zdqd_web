@@ -96,9 +96,15 @@
 							var id = data.station_id;
 							$.ajax({
 								//TODO:这里要加上删除的url
-								url: "http://localhost/abc",
+								
+								url: "http://localhost/Delstation",
+								data:{'id':id},
+								type:"get",
 								success: function (res) {
 									layer.msg("删除成功!");
+								},
+								failed:function (res) {
+									layer.msg("删除失败!")
 								}
 							})
 						});
@@ -108,7 +114,7 @@
 		}
 		
 		//TODO:此处是表格初始化的url
-		tableInit("");
+		tableInit("http://localhost/ShowStation");
 
 		layui.use('layer', function () {
 			var $ = layui.$ //由于layer弹层依赖jQuery，所以可以直接得到
@@ -118,7 +124,7 @@
 			$("#findById").on('click', function () {
 				var id = $(this).parent().parent().find(".layui-input").val();
 				//TODO:此处是查找的url
-				tableInit("" + id);
+				tableInit("http://localhost/FindOneStation?id="+id)
 			})
 		});
 	</script>
@@ -127,6 +133,7 @@
 	</script>
 	<script>
 		layui.use('table', function () {
+			var $ = layui.$;
 			var table = layui.table;
 			//监听单元格编辑
 			table.on('edit(test)', function (obj) {
@@ -135,14 +142,23 @@
 					data = obj.data //得到所在行所有键值
 					,
 					field = obj.field;
+				station_id2 = data.station_id
+				station_name2 = data.station_name
+				manager_id2 = data.manager_id
 				$.ajax({
 					//提示:直接调用data,是这一列的所有键值,例如data.id就是id
 					//调用field,即修改的这个字段.例如修改了stationid,则field即为stationid
 					//调用value,为修改后的值,例如将5改为2,则value的值为2
 					//TODO:这里是修改功能
-					url: "",
+					data:{"station_id":station_id2,"station_name":station_name2,"manager_id":manager_id2},
+					type:"get",
+					url: "http:/localhost/UpdateStation",
 					success: function (res) {
 						layer.msg('成功将该字段的值修改为' + value + "!")
+						tableInit("http://localhost/ShowStation")
+					},
+					failed:function (res) {
+						layer.msg("shibaile")
 					}
 				})
 			});

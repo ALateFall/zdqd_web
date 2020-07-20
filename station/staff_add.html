@@ -1,127 +1,104 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title></title>
-		<link rel="stylesheet" href="../layui/css/layui.css" media="all">
-		<script type="text/javascript" src="../layui/layui.js"></script>
-	</head>
-	<body>
-        <img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
-		<form class="layui-form" action="">
-		  <!-- <div class="layui-form-item">
-		    <label class="layui-form-label">包裹编号</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="parcel_num" required  lay-verify="required" placeholder="请输入包裹编号" autocomplete="off" class="layui-input">
-		    </div>
-		  </div> -->
-		  <!-- <div class="layui-form-item">
-		    <label class="layui-form-label">快递公司名称</label>
-		    <div class="layui-input-inline">
-		      <input type="text" name="compy_id" required lay-verify="required" placeholder="请输入快递公司编号" autocomplete="off" class="layui-input">
-		    </div>
-		  </div> -->
-		  <div class="layui-form-item" style="padding-left: 270px; width: 800px;padding-top: 130px">
-		    <label class="layui-form-label" >员工姓名</label>
-		    <div class="layui-input-block"  >
-		      <input type="text" name="staff_name" required  lay-verify="required" placeholder="请输入员工姓名" autocomplete="off" class="layui-input">
-		    </div>
-          </div>
-          <div class="layui-form-item" pane style="padding-left: 270px">
-            <label class="layui-form-label">性别</label>
-            <div class="layui-input-block">
-              <input type="radio" name="staff_sex" value="男" title="男">
-              <input type="radio" name="staff_sex" value="女" title="女" checked>
-            </div>
-          </div>
-          <div class="layui-form-item"  style="padding-left: 270px; width: 800px">
-		    <label class="layui-form-label">所属驿站</label>
-		    <div class="layui-input-block">
-		      <select name="station_id" lay-verify="required">
-		        <option value=""></option>
-		        <option value="1">成都柏景湾1号店</option>
-		        <option value="2">成都世纪佳缘1号店</option>
-		        <option value="3">成都三门店</option>
-		        <option value="4">成都花园店</option>
-				<option value="5">成都双流店</option>
-                <option value="6">成都春熙路1号店</option>
-                <option value="7">成都总店</option>
-                <option value="8">成都菜鸟驿站8号店</option>
-                <option value="9">成都丽景店</option>
-                <option value="10">成都菜鸟驿站2号店</option>
-		      </select>
-		    </div>
-		  </div>
-		  <!-- <div class="layui-form-item"  style="padding-left: 270px; width: 800px">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title></title>
+	<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+	<script type="text/javascript" src="../layui/layui.js"></script>
+</head>
+
+<body>
+	<img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
+	<form class="layui-form" action="">
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px;padding-top: 130px">
+			<label class="layui-form-label">员工姓名</label>
+			<div class="layui-input-block">
+				<input type="text" name="staff_name" required lay-verify="required" placeholder="请输入员工姓名"
+					autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<label class="layui-form-label">员工id</label>
+			<div class="layui-input-block">
+				<input type="text" name="staff_id" required lay-verify="required" placeholder="请输入员工id"
+					autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" pane style="padding-left: 270px">
+			<label class="layui-form-label">性别</label>
+			<div class="layui-input-block">
+				<input type="radio" name="staff_sex" value="男" title="男">
+				<input type="radio" name="staff_sex" value="女" title="女" checked>
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<label class="layui-form-label">所属驿站</label>
+			<div class="layui-input-block">
+				<select name="station_id" lay-verify="required">
+					<option value=""></option>
+					<option value="1">成都柏景湾1号店</option>
+					<option value="2">成都世纪佳缘1号店</option>
+					<option value="3">成都三门店</option>
+					<option value="4">成都花园店</option>
+					<option value="5">成都双流店</option>
+					<option value="6">成都春熙路1号店</option>
+					<option value="7">成都总店</option>
+					<option value="8">成都菜鸟驿站8号店</option>
+					<option value="9">成都丽景店</option>
+					<option value="10">成都菜鸟驿站2号店</option>
+				</select>
+			</div>
+		</div>
+		<!-- <div class="layui-form-item"  style="padding-left: 270px; width: 800px">
 		    <label class="layui-form-label">所属驿站</label>
 		    <div class="layui-input-block" >
 		      <input type="text" name="station_id" required  lay-verify="required" placeholder="请输入所属驿站" autocomplete="off" class="layui-input">
 		    </div>
 		  </div> -->
-		  <div class="layui-form-item" style="padding-left: 270px; width: 800px">
-		    <label class="layui-form-label">管理人员</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="manager_name" required  lay-verify="required" placeholder="请输入管理者姓名" autocomplete="off" class="layui-input">
-		    </div>
-		  </div>
-		  <!-- <div class="layui-form-item"  style="padding-left: 270px; width: 800px">
-		    <label class="layui-form-label">寄件城市</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="sender_city" required  lay-verify="required" placeholder="请输入寄件地址" autocomplete="off" class="layui-input">
-		    </div>
-		  </div> -->
-		  <!-- <div class="layui-form-item">
-		    <label class="layui-form-label">包裹所在地</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="parcel_city"required  lay-verify="required"   class="layui-input">
-		    </div>
-		  </div> -->
-		  
-		  <!-- <div class="layui-form-item">
-		    <label class="layui-form-label">包裹状态</label>
-		    <div class="layui-input-block">
-		      <input type="radio" name="parcel_zhuangtai" value="到达" title="到达">
-		      <input type="radio" name="parcel_zhuangtai" value="途中" title="途中" checked>
-		    </div>
-		  </div> -->
-		  <!-- <div class="layui-form-item"  style="padding-left: 270px; width: 800px">
-		    <label class="layui-form-label">快递公司</label>
-		    <div class="layui-input-block">
-		      <select name="compy_id" lay-verify="required">
-		        <option value=""></option>
-		        <option value="1">韵达快递</option>
-		        <option value="2">百世快递</option>
-		        <option value="3">中通快递</option>
-		        <option value="4">圆通快递</option>
-				<option value="5">顺丰快递</option>
-				<option value="6">邮政快递</option>
-		      </select>
-		    </div>
-		  </div> -->
-		  <div class="layui-form-item"  style="padding-left: 270px; width: 800px">
-		    <div class="layui-input-block">
-				<button type="button" class="layui-btn layui-btn-radius layui-btn-warm"  id="findById"><i class="layui-icon">&#xe615;</i>确定添加</button>
-		      <button type="reset" class="layui-btn layui-btn-radius layui-btn-primary"><i class="layui-icon">&#xe669;</i>重置</button>
-		    </div>
-		  </div>
-		</form>
-		 
-		<script>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<label class="layui-form-label">管理人员</label>
+			<div class="layui-input-block">
+				<input type="text" name="manager_name" required lay-verify="required" placeholder="请输入管理者姓名"
+					autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="padding-left: 270px; width: 800px">
+			<div class="layui-input-block">
+				<button type="submit" class="layui-btn layui-btn-radius layui-btn-warm" id="findById" lay-filter="submit2" lay-submit=""><i
+						class="layui-icon">&#xe615;</i>确定添加</button>
+				<button type="reset" class="layui-btn layui-btn-radius layui-btn-primary"><i
+						class="layui-icon">&#xe669;</i>重置</button>
+			</div>
+		</div>
+	</form>
+
+	<script>
 		//Demo
-		layui.use(['form','jquery'], function(){
-		  var form = layui.form;
-		  window.jquery = window.$ = layui.jquery;
-		  
-		  //监听提交
-		  form.on('submit(formDemo)', function(data){
-		    layer.msg(JSON.stringify(data.field));//表单中被序列化好的json数据
-			$.post("http://localhost:8088/user/regUser",data.field,function(){
-				window.location.href = "package.html";
-			})
-		    return false;
-		  });
+		layui.use(['form', 'jquery'], function () {
+			var $ = layui.$
+			var form = layui.form;
+			window.jquery = window.$ = layui.jquery;
+
+			//监听提交
+			form.on('submit(submit2)', function (data) {
+				console.log(data.field)
+				$.ajax({
+					//TODO:进行添加的url
+					url :"",
+					//下面是传参,不需要的可以删一删
+					data: {"staff_name":data.field.staff_name, "staff_id":data.field.staff_id,"staff_sex":data.field.staff_sex,"station_id":data.field.station_id},
+					type:"get",
+					success: function (res) {
+						layer.msg("添加成功!")
+					}
+				})
+				
+				return false;
+			});
 		});
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>
