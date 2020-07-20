@@ -25,11 +25,11 @@
     <img src="../my_photo/white-cainiao.jpg" width="40%" style="padding-left: 500px; padding-top: 0px;" alt="菜鸟裹裹">
     <div>
         <div style="padding-left: 40%;" class="layui-inline">
-            <input type="text" name="parcel_num" required lay-verify="required" placeholder="请输入包裹编号" autocomplete="off"
-                class="layui-input" style="width:125px;">
+            <input type="text" id="input" name="parcel_num" required lay-verify="required" placeholder="请输入包裹编号"
+                autocomplete="off" class="layui-input" style="width:125px;">
         </div>
         <div class="layui-inline">
-            <button type="button" class="layui-btn layui-btn-radius layui-btn-warm" id="findById"><i
+            <button type="submit" class="layui-btn layui-btn-radius layui-btn-warm" id="button"><i
                     class="layui-icon">&#xe615;</i> 查找包裹</button>
 
         </div>
@@ -41,32 +41,55 @@
 </html>
 <script type="text/javascript">
     // 百度地图API功能
-    start = "达州"
-    end = "北京"
-    var map = new BMap.Map("allmap");
-    map.centerAndZoom(new BMap.Point(116.404, 39.915), 12);
-    var output = "从" + start + "到" + end + "驾车需要";
-    var searchComplete = function (results) {
-        if (transit.getStatus() != BMAP_STATUS_SUCCESS) {
-            return;
+    layui.use('layer', function () {
+        var $ = layui.$
+        start = "达州"
+        end = "北京"
+
+        document.getElementById("button").addEventListener('click', myfunc);
+
+        function myfunc() {
+            id = document.getElementById("input").value
+            $.ajax({
+                url: "", //TODO:查询包裹
+                data: {
+                    "id": id
+                },
+                type: "get",
+                success: function (res) {
+                    //TODO:得到出发城市和到达城市
+                    start = ""
+                    end = ""
+                }
+
+            })
+            var map = new BMap.Map("allmap");
+            map.centerAndZoom(new BMap.Point(116.404, 39.915), 12);
+            var output = "从" + start + "到" + end + "驾车需要";
+            var searchComplete = function (results) {
+                if (transit.getStatus() != BMAP_STATUS_SUCCESS) {
+                    return;
+                }
+                var plan = results.getPlan(0);
+                output += plan.getDuration(true) + "\n"; //获取时间
+                output += "总路程为：";
+                output += plan.getDistance(true) + "\n"; //获取距离
+                output += "您的包裹预计在" + new String(new Number(new String(plan.getDuration(true))
+                        .split("小时")[0]) * 2 + 3) +
+                    "小时内送达,谢谢."
+            }
+            var transit = new BMap.DrivingRoute(map, {
+                renderOptions: {
+                    map: map
+                },
+                onSearchComplete: searchComplete,
+                onPolylinesSet: function () {
+                    setTimeout(function () {
+                        alert(output)
+                    }, "1000");
+                }
+            });
+            transit.search(start, end);
         }
-        var plan = results.getPlan(0);
-        output += plan.getDuration(true) + "\n"; //获取时间
-        output += "总路程为：";
-        output += plan.getDistance(true) + "\n"; //获取距离
-        output += "您的包裹预计在" + new String(new Number(new String(plan.getDuration(true)).split("小时")[0]) + 20) +
-            "小时内送达,谢谢."
-    }
-    var transit = new BMap.DrivingRoute(map, {
-        renderOptions: {
-            map: map
-        },
-        onSearchComplete: searchComplete,
-        onPolylinesSet: function () {
-            setTimeout(function () {
-                alert(output)
-            }, "1000");
-        }
-    });
-    transit.search(start, end);
+    })
 </script>
