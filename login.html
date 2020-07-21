@@ -56,7 +56,7 @@
 				<span class="spin"></span>
 			</div>
 			<div class="button">
-				<button>
+				<button id="register">
 					<span>注册</span>
 				</button>
 			</div>
@@ -69,24 +69,25 @@
 
 	<script>
 		layui.use('layer', function () {
-			var $ = layui.$ 
+			var $ = layui.$
+
 			function mycheck() {
 				var id = document.getElementById("name").value
 				var password = document.getElementById("pass").value
 				console.log(1)
 				window.location.href = "index.html"
 				test = "index.html"
-				if(test=="index.html"){
+				if (test == "index.html") {
 					window.location.href = "index.html"
-				}else{
+				} else {
 					window.location.href = "login.html"
 				}
 				$.ajax({
-					url :"http://ltfall.top",//TODO:这里是url
-					type:"get",
-					data:{},//这个是发送的数据格式,id是用户填写的用户名,password是填写的密码
-					dataType:String,
-					success: function(res){//res是返回的数据
+					url: "http://ltfall.top", //TODO:这里是url
+					type: "get",
+					data: {}, //这个是发送的数据格式,id是用户填写的用户名,password是填写的密码
+					dataType: String,
+					success: function (res) { //res是返回的数据
 						console.log(res)
 						// if(res==""){
 						// 	window.location.href = ""
@@ -98,6 +99,35 @@
 				})
 			}
 			document.getElementById("login").addEventListener("click", mycheck)
+		})
+	</script>
+
+	<script>
+		layui.use('layer', function () {
+			var $ = layui.$
+
+			function mycheck() {
+				var id = document.getElementById("regname").value
+				var password = document.getElementById("regpass").value
+				var password2 = document.getElementById("reregpass").value
+				if (password != password2) {
+					layer.msg("两次密码不一致!")
+				} else {
+					layer.msg("账号:"+id+",密码:"+password)
+					$.ajax({
+						url: "", //TODO:这里是url
+						type: "get",
+						data: {"id":id,"password":password}, //这个是发送的数据格式,id是用户填写的用户名,password是填写的密码
+						success: function (res) { //res是返回的数据
+							layer.msg("注册成功!")
+							
+							return false;
+						}
+					})
+				}
+
+			}
+			document.getElementById("register").addEventListener("click", mycheck)
 		})
 	</script>
 
